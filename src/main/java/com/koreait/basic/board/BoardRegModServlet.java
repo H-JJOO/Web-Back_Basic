@@ -26,26 +26,28 @@ public class BoardRegModServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         //로그아웃 상태일때
         int loginUserPk = Utils.getLoginUserPk(req);
-        if (loginUserPk == 0) {
+        if(loginUserPk == 0) {
             res.sendRedirect("/user/login");
             return;
         }
+
         String title = req.getParameter("title");
         String ctnt = req.getParameter("ctnt");
 
         BoardEntity entity = new BoardEntity();
-
         entity.setTitle(title);
         entity.setCtnt(ctnt);
-        entity.setWriter(Utils.getLoginUserPk(req));
+        entity.setWriter(loginUserPk);
 
-        int result = BoardDAO.insBoard(entity);
-
+        int result = BoardDAO.insBoardWithPk(entity);
+        System.out.println("after-insert-iboard : " + entity.getIboard());
         switch (result) {
             case 1:
-                res.sendRedirect("/board/list");
-                break;
-
+                if(entity.getIboard() != 0) {
+                    res.sendRedirect("/board/detail?iboard=" + entity.getIboard());
+                }
+                return;
         }
+        res.sendRedirect("/board/list");
     }
 }

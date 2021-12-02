@@ -1,11 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<link rel="stylesheet" href="/res/css/board/list.css">
 <div>
     <c:if test="${sessionScope.loginUser != null}">
         <div><a href="/board/regmod">글등록</a></div>
     </c:if>
     <div>
-        <table border="1">
+        <table id="boardTable">
             <tr>
                 <th>no</th>
                 <th>title</th>
@@ -14,7 +15,7 @@
                 <th>reg-datetime</th>
             </tr>
             <c:forEach items="${requestScope.list}" var="item">
-                <tr>
+                <tr class="record" onclick="moveToDetail(${item.iboard});">
                     <td>${item.iboard}</td>
                     <td><c:out value="${item.title}"/></td>
                     <td>${item.hit}</td>
@@ -25,3 +26,4 @@
         </table>
     </div>
 </div>
+<script src="/res/js/board/list.js"></script>
