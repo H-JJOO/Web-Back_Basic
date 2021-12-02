@@ -1,8 +1,11 @@
 package com.koreait.basic;
 
+import com.koreait.basic.user.model.UserEntity;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class Utils {
@@ -33,4 +36,17 @@ public class Utils {
         int intVal = parseStringToInt(strVal);
         return intVal;
     }
+
+    public static UserEntity getLoginUser(HttpServletRequest req) {
+        HttpSession session = req.getSession();
+        return  (UserEntity)session.getAttribute("loginUser");
+    }
+
+    //예외발생을 막기위해서 null 이면 0 return 하도록
+    public static int getLoginUserPk(HttpServletRequest req) {
+        UserEntity loginUser = getLoginUser(req);
+        return  loginUser == null ? 0 : loginUser.getIuser();
+    }
+
+
 }

@@ -1,0 +1,14 @@
+t_user 테이블 생성 (조회수 hit)
+
+Entity (INSERT, UPDATE, DELETE)
+ : Table 과 1:1 Mapping, Getter Setter 둘다 있음, 테이블이 수정 되지 않는 이상 수정될일 없음
+
+VO(Value Object) (View용) (SELECT) return type
+ : 값을 대표하는 객체(불변성)
+Getter 는 있지만 Setter 없고 Builder 사용
+(생성자를 통해서 값을 넣어야한다.)
+Entity 대신 좀 지저분해지는 역할
+
+DTO (Data Trasfer Object) (SELECT) parameter
+: select 때 쓰는 parameter,
+값을 전달할때 쓰는 객체

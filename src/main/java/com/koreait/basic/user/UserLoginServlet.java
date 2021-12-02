@@ -1,6 +1,8 @@
 package com.koreait.basic.user;
 
 import com.koreait.basic.Utils;
+import com.koreait.basic.dao.UserDAO;
+import com.koreait.basic.user.model.LoginResult;
 import com.koreait.basic.user.model.UserEntity;
 
 import javax.servlet.ServletException;
@@ -8,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/user/login")
@@ -27,6 +30,23 @@ public class UserLoginServlet extends HttpServlet {
         entity.setUid(uid);
         entity.setUpw(upw);
         System.out.println(entity);
+
+        LoginResult lr = UserDAO.login(entity);
+        switch (lr.getResult()) {
+            case 1:
+                //세션에 loginUser 값 등록
+                HttpSession session = req.getSession();
+                session.setAttribute("loginUser", lr.getLoginUser());
+                //이동
+                res.sendRedirect("/board/list");
+                break;
+            default:
+                req.setAttribute("err", "로그인에 실패하였습니다.");
+                doGet(req, res);
+                break;
+        }
+        System.out.println("result : " + lr.getResult());
+        System.out.println("loginUser : " + lr.getLoginUser());
 
 
 

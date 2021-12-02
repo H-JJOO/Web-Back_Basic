@@ -1,5 +1,14 @@
-* { padding: 0; margin: 0; }
+* { padding: 0; margin: 0; box-sizing: border-box; }
+
+ul {list-style: none;}
+a {text-decoration: none; color: #000;}
 
 .container { display: grid; grid-template-rows: 100px 1fr 80px; min-height: 100vh; }
-.header { background-color: #ffb4b4; }
+
+.header { background-color: #ffb4b4; padding: 10px 30px;}
+.topMenu { display: flex; }
+.topMenu li a {color: #fff;}
+.topMenu li a:hover {color: #efefef; font-size: 20px;}
+.topMenu li:not(:first-child) { margin-left: 10px;}
+.topMenu li {color: #fff;}
 .footer { background-color: #000000; color: #fff; }

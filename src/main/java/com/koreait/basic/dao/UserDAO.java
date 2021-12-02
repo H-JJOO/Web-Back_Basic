@@ -37,7 +37,7 @@ public class UserDAO {
     //result 가 1이었을 때만 loginUser 에 로그인 한 유저의 id, nm, gender 값을 저장한 객체를 담는다.
     public static LoginResult login(UserEntity entity) {
         int result = 0;
-        UserEntity loginUser = null;
+        UserEntity loginUser = null;//변수할당
         
         Connection con = null;
         PreparedStatement ps = null;
@@ -71,6 +71,6 @@ public class UserDAO {
         } finally {
             DbUtils.close(con, ps, rs);
         }
-        return new LoginResult(result, loginUser);//0
+        return new LoginResult(result, loginUser);//변수쓰임, 생성
     }
 }
