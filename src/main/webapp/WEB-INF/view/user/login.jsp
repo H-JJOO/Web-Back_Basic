@@ -8,5 +8,9 @@
     <div>
         <a href="/user/join"><input type="button" value="join"></a>
     </div>
+    <div>
+        <input type="button" value="비밀번호 보이기" id="btnShowPw">
+    </div>
+
 </div>
 <script src="/res/js/user/login.js"></script>

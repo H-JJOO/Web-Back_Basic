@@ -1,6 +1,7 @@
 package com.koreait.basic.user;
 
 import com.koreait.basic.Utils;
+import com.koreait.basic.user.model.UserEntity;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +19,17 @@ public class UserLoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String uid = req.getParameter("uid");
+        String upw = req.getParameter("upw");
+
+        UserEntity entity = new UserEntity();
+
+        entity.setUid(uid);
+        entity.setUpw(upw);
+        System.out.println(entity);
+
+
+
 
     }
 }
