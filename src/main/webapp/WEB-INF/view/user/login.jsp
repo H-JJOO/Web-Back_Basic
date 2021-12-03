@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<link rel="stylesheet" href="/res/css/user/login.css">
 <div>
     <form action="/user/login" method="post" id="frm">
         <div><input type="text" name="uid" placeholder="아이디" value="hong123"></div>

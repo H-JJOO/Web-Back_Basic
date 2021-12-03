@@ -16,9 +16,4 @@ public class UserLogoutServlet extends HttpServlet {
         session.invalidate();
         res.sendRedirect("/board/list");
     }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
-    }
 }
