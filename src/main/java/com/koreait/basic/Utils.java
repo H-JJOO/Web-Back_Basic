@@ -42,6 +42,14 @@ public class Utils {
         return  (UserEntity)session.getAttribute("loginUser");
     }
 
+    public static boolean isLogout(HttpServletRequest req) {
+        return getLoginUser(req) == null;
+    }
+
+    public static boolean isLogin(HttpServletRequest req) {
+        return getLoginUser(req) != null;
+    }
+
     //예외발생을 막기위해서 null 이면 0 return 하도록
     public static int getLoginUserPk(HttpServletRequest req) {
         UserEntity loginUser = getLoginUser(req);
