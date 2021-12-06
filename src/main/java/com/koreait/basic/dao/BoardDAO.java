@@ -25,10 +25,11 @@ public class BoardDAO {
         try {
             con = DbUtils.getCon();
             ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            //DB상에 AUTO_INCREMENT로 인해 자동으로 생성되어진 key(=id)를 가져오는 쿼리
             ps.setString(1, entity.getTitle());
             ps.setString(2, entity.getCtnt());
             ps.setInt(3, entity.getWriter());
-            result = ps.executeUpdate();
+            result = ps.executeUpdate();//1
             rs = ps.getGeneratedKeys();
             if(rs.next()) {
                 int iboard = rs.getInt(1);
@@ -62,6 +63,32 @@ public class BoardDAO {
             DbUtils.close(con, ps);
         }
         return 0;
+    }
+
+    public static int getMaxPageNum(BoardDTO param) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = " SELECT CEIL(COUNT(*) / ?) " +
+                    " FROM t_board ";
+
+        try {
+            con = DbUtils.getCon();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, param.getRowCnt());
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DbUtils.close(con, ps, rs);
+        }
+        return 0;
+
+
     }
 
     public static List<BoardVO> selBoardList() {

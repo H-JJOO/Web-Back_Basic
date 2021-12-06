@@ -4,6 +4,13 @@
 <div>
     <div>
         <table id="boardTable">
+            <colgroup>
+                <col width="5%">
+                <col>
+                <col>
+                <col width="100px">
+                <col>
+            </colgroup>
             <tr>
                 <th>no</th>
                 <th>title</th>

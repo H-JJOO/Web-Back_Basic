@@ -66,6 +66,7 @@ public class BoardRegModServlet extends HttpServlet {
             case 1:
                 if(entity.getIboard() != 0) {
                     res.sendRedirect("/board/detail?iboard=" + entity.getIboard());
+                    return;
                 }
                 break;
             default:

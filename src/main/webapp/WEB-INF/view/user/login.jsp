@@ -1,16 +1,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" href="/res/css/user/login.css">
-<div>
-    <form action="/user/login" method="post" id="frm">
-        <div><input type="text" name="uid" placeholder="아이디" value="hong123"></div>
-        <div><input type="password" name="upw" placeholder="password" value="123123"></div>
-        <div><input type="submit" value="login"></div>
-    </form>
+<div class="wrap">
     <div>
-        <a href="/user/join"><input type="button" value="join"></a>
-    </div>
-    <div>
-        <input type="button" value="비밀번호 보이기" id="btnShowPw">
+        <form action="/user/login" method="post" id="frm">
+            <div><input type="text" name="uid" placeholder="아이디" value="hong123"></div>
+            <div><input type="password" name="upw" placeholder="password" value="123123"></div>
+            <div class="logBtn">
+                <input type="submit" value="login">
+            </div>
+            <div class="joinBtn">
+                <a href="/user/join"><input type="button" value="join"></a>
+                <input type="button" value="비밀번호 보이기" id="btnShowPw">
+            </div>
+        </form>
     </div>
 
 </div>

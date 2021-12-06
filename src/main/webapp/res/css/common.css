@@ -1,5 +1,11 @@
 * { padding: 0; margin: 0; box-sizing: border-box; }
 
+html {height: 100%;}
+
+div.header {border-bottom: 5px solid #000; }
+div.joinBtn {display: flex;}
+div.joinBtn > input {width: 100%;}
+div.joinBtn > a {width: 100%; display: inline-block;}
 
 a {text-decoration: none; color: #000;}
 table, td, th { border: 1px solid #262626; border-collapse: collapse;}
@@ -8,11 +14,27 @@ ul {list-style: none;}
 
 .container { display: grid; grid-template-rows: 100px 1fr 80px; min-height: 100vh; }
 
+
+table {
+    border-top: 1px solid #222;
+    border-left: 0;
+    border--right: 0;
+}
+table th {background: #ddd;}
+
+
 .header { background-color: #ffb4b4; padding: 10px 30px;}
 .topMenu { display: flex; }
 .topMenu li a {color: #fff;}
 .topMenu li a:hover {color: #efefef; font-size: 20px;}
 .topMenu li:not(:first-child) { margin-left: 10px;}
 .topMenu li {color: #fff;}
+.topMenu li:last-child{flex-grow:1; text-align: right; color: #ffffff;}
 .body { padding: 20px;}
+
+.wrap {height: 100%; display: flex; justify-content: center; align-items: center;}
+.wrap > div {padding: 50px; background: #ffb4b4; border: 5px solid #000000;}
+.logBtn > input {width: 100%;}
+
+
 .footer { background-color: #000000; color: #fff; }
