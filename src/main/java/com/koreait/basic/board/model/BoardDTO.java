@@ -10,4 +10,5 @@ public class BoardDTO {
     private int page;
     private int startIdx;
     private int rowCnt;
+
 }

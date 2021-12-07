@@ -37,6 +37,10 @@ public class Utils {
         return intVal;
     }
 
+    public static int getParameterInt(HttpServletRequest req, String key, int defVal) {
+        return parseStringToInt(req.getParameter(key), defVal);
+    }
+
     public static UserEntity getLoginUser(HttpServletRequest req) {
         HttpSession session = req.getSession();
         return  (UserEntity)session.getAttribute("loginUser");
