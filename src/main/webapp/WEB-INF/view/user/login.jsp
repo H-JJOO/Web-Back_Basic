@@ -8,12 +8,12 @@
             <div class="logBtn">
                 <input type="submit" value="login">
             </div>
-            <div class="joinBtn">
+            <div class="jsBtn">
                 <a href="/user/join"><input type="button" value="join"></a>
-                <input type="button" value="비밀번호 보이기" id="btnShowPw">
+                <input type="button" value="show PW" id="btnShowPw">
             </div>
         </form>
     </div>
 
 </div>
-<script src="/res/js/user/login.js"></script>
+<script src="/res/js/user/login.js" ver="3"></script>

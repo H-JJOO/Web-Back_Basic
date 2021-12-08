@@ -1,3 +1,10 @@
+
+#boardTable {
+    margin-top: 10px;
+    width: 100%;
+
+}
+
 #boardTable tr:not(:first-child):hover {
     background-color: #efefef; cursor: pointer;
 }

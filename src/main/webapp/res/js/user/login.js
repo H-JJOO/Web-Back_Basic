@@ -21,12 +21,15 @@ if (frm) {
             alert('아이디는 5~20글자 입니다.');
             e.preventDefault();
             return;
+
         }
         if (frm.upw.value.length < 5) {
             //비밀번호가 5글자 미만이면 alert, No send
             alert('비밀번호를 확인해 주세요.');
             e.preventDefault();
             return;
+
+
         }
     }
     frm.addEventListener('submit', frmSubmitEvent);
@@ -37,10 +40,10 @@ if (frm) {
             //클릭하면 function 실행
             if (frm.upw.type === 'password') {//upw 타입이 'password'면
                 frm.upw.type = 'text';//upw 타입을 'text'로 변경
-                btnShowPw.value = '비밀번호 숨기기';//btnShowPw 의 value를 변경
+                btnShowPw.value = 'hide PW';//btnShowPw 의 value를 변경
             } else {
                 frm.upw.type = 'password';//upw 타입을 'password'로 변경
-                btnShowPw.value = '비밀번호 보이기';//btnShowPw 의 value를 변경
+                btnShowPw.value = 'show PW';//btnShowPw 의 value를 변경
             }
         });
     }

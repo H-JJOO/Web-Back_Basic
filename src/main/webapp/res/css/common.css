@@ -10,6 +10,7 @@ div.joinBtn > a {width: 100%; display: inline-block;}
 a {text-decoration: none; color: #000;}
 table, td, th { border: 1px solid #262626; border-collapse: collapse;}
 td, th {padding: 5px;}
+tr {text-align: center;}
 ul {list-style: none;}
 
 .container { display: grid; grid-template-rows: 100px 1fr 80px; min-height: 100vh; }
@@ -29,12 +30,23 @@ table th {background: #ddd;}
 .topMenu li a:hover {color: #efefef; font-size: 20px;}
 .topMenu li:not(:first-child) { margin-left: 10px;}
 .topMenu li {color: #fff;}
-.topMenu li:last-child{flex-grow:1; text-align: right; color: #ffffff;}
+.topMenu li.logout{flex-grow:1; text-align: right; color: #ffffff;}
+.topMenu li.welcome { flex-grow: 99;text-align: right;
+
+}
+
 .body { padding: 20px;}
+
 
 .wrap {height: 100%; display: flex; justify-content: center; align-items: center;}
 .wrap > div {padding: 50px; background: #ffb4b4; border: 5px solid #000000;}
 .logBtn > input {width: 100%;}
 
+.genBtn {width: 100%; display: flex; justify-content: center;}
+.genBtn > label {margin-left: 5px;}
+.jsBtn > a > input {width: 48%;}
+.jsBtn > input {width: 48%;}
+.jrBtn > input {width: 48%;}
 
-.footer { background-color: #000000; color: #fff; }
+
+.footer { background-color: #000000; color: #fff; display: flex; justify-content: center; align-items: center;}

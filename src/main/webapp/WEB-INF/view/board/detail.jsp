@@ -23,5 +23,41 @@
             <a href="/board/detail?iboard=${requestScope.nextIboard}"><input type="button" value="다음글"></a>
         </c:if>
     </div>
+    <div>
+        <span><<< 댓글 >>></span>
+        <table>
+            <tr>
+                <th>내용</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>비고</th>
+            </tr>
+            <c:forEach items="${requestScope.cmtList}" var="item">
+                <tr>
+                    <td><c:out value="${item.ctnt}"/></td>
+                    <td>${item.writerNm}</td>
+                    <td>${item.rdt}</td>
+
+                    <td>
+                        <c:if test="${sessionScope.loginUser.iuser == item.writer}">
+                            <button>수정</button>
+                            <button onclick="isDelCmt(${requestScope.data.iboard}, ${item.icmt})">삭제</button>
+                        </c:if>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+    <div>
+        <c:if test="${sessionScope.loginUser != null}">
+        <form action="/board/cmt/reg" method="post">
+            <input type="hidden" name="iboard" value="${requestScope.data.iboard}">
+            <div>
+                <input type="text" name="ctnt" placeholder="댓글 내용">
+                <input type="submit" value="등록">
+            </div>
+        </form>
+        </c:if>
+    </div>
 </div>
-<script src="/res/js/board/detail.js"></script>
+<script src="/res/js/board/detail.js" ver="1"></script>
