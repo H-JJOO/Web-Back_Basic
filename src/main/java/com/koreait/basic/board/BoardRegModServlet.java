@@ -48,9 +48,9 @@ public class BoardRegModServlet extends HttpServlet {
 
         int iboard = Utils.getParameterInt(req, "iboard");
         String title = req.getParameter("title");
-        title = title.replace("<", "&lt;").replace(">", "&rt");
+        title = title.replace("<", "&lt;").replace(">", "&gt");
         String ctnt = req.getParameter("ctnt");
-        ctnt = ctnt.replace("<", "&lt;").replace(">", "&rt");
+        ctnt = ctnt.replace("<", "&lt;").replace(">", "&gt");
 
 
         int result = 0;
