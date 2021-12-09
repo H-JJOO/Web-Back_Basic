@@ -10,26 +10,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/board/cmt/reg")
-public class BoardCmtRegServlet extends HttpServlet {
+@WebServlet("/board/cmt/mod")
+public class BoardCmtModServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        int iboard = Utils.getParameterInt(req, "iboard", 0);
+        int iboard = Utils.getParameterInt(req, "iboard");
+        int icmt = Utils.getParameterInt(req, "icmt");
         String ctnt = req.getParameter("ctnt");
+        int writer = Utils.getLoginUserPk(req);
 
         BoardCmtEntity param = new BoardCmtEntity();
-        param.setIboard(iboard);
+        param.setIcmt(icmt);
         param.setCtnt(ctnt);
-        param.setWriter(Utils.getLoginUserPk(req));
+        param.setWriter(writer);
 
-        int result = BoardCmtDAO.insBoardCmt(param);
+        int result = BoardCmtDAO.updBoardCmt(param);
 
         switch (result) {
             case 1:
                 res.sendRedirect("/board/detail?nohits=1&iboard=" + iboard);
                 break;
             default:
-                req.setAttribute("err", "댓글 등록을 실패하였습니다.");
+                req.setAttribute("err", "댓글 수정을 실패하였습니다.");
                 res.sendRedirect("/board/detail?nohits=1&iboard=" + iboard);
                 break;
         }
