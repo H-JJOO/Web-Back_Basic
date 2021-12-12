@@ -34,7 +34,6 @@ public class BoardRegModServlet extends HttpServlet {
             }
         }
         Utils.displayView(title, "/board/regmod", req, res);
-
     }
 
     @Override
@@ -51,7 +50,6 @@ public class BoardRegModServlet extends HttpServlet {
         title = title.replace("<", "&lt;").replace(">", "&gt");
         String ctnt = req.getParameter("ctnt");
         ctnt = ctnt.replace("<", "&lt;").replace(">", "&gt");
-
 
         int result = 0;
         BoardEntity entity = new BoardEntity();
@@ -76,7 +74,6 @@ public class BoardRegModServlet extends HttpServlet {
                 req.setAttribute("data", entity);
                 doGet(req, res);
                 break;
-
         }
         res.sendRedirect("/board/list");
     }

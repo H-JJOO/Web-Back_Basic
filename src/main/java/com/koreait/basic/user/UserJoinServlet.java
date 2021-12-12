@@ -44,6 +44,5 @@ public class UserJoinServlet extends HttpServlet {
                 doGet(req, res);
                 break;
         }
-
     }
 }

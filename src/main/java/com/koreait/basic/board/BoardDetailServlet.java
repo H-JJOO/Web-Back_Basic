@@ -21,7 +21,6 @@ public class BoardDetailServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         int nohits = Utils.getParameterInt(req, "nohits");//야매로 댓글달때 조회수 안오르게
         int iboard = Utils.getParameterInt(req, "iboard");
-        //TODO writer 주면 된다고? 일단 대기
 
         BoardDTO param = new BoardDTO();
         param.setIboard(iboard);

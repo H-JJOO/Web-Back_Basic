@@ -33,7 +33,6 @@ public class BoardDelServlet extends HttpServlet {
                 req.setAttribute("err", "글 삭제를 실패하였습니다.");
                 req.getRequestDispatcher("/board/detail?iboard=" + iboard).forward(req, res);
                 return;
-
         }
     }
 }
