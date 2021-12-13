@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel="stylesheet" href="/res/css/board/detail.css">
+<link rel="stylesheet" href="/res/css/board/detail.css" ver="1">
 <div>
     <c:if test="${sessionScope.loginUser.iuser == requestScope.data.writer}">
     <div>
@@ -8,6 +8,21 @@
         <a href="/board/regmod?iboard=${requestScope.data.iboard}"><button>수정</button></a>
     </div>
     </c:if>
+
+    <c:if test="${sessionScope.loginUser != null}">
+        <div class="fav">
+            <c:choose>
+                <c:when test="${requestScope.isHeart == 1}">
+                    <a href="/board/heart?proc=2&iboard=${requestScope.data.iboard}"><i class="fas fa-thumbs-up"></i></a>
+                </c:when>
+                <c:otherwise>
+                    <a href="/board/heart?proc=1&iboard=${requestScope.data.iboard}"><i class="far fa-thumbs-up"></i></a>
+                </c:otherwise>
+            </c:choose>
+
+        </div>
+    </c:if>
+
     <div>글번호 : ${requestScope.data.iboard}</div>
     <div>조회수 : ${requestScope.data.hit}</div>
     <div>작성자 : ${requestScope.data.writerNm}</div>

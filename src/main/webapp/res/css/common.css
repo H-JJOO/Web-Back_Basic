@@ -48,5 +48,8 @@ table th {background: #ddd;}
 .jsBtn > input {width: 48%;}
 .jrBtn > input {width: 48%;}
 
+.fav {color: #ffacbe; font-size: 20px;}
+.fav i:hover {cursor: pointer; }
+
 
 .footer { background-color: #000000; color: #fff; display: flex; justify-content: center; align-items: center;}
