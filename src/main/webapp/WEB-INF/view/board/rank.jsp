@@ -1,8 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<link rel="stylesheet" href="/res/css/board/list.css">
+<h1>${requestScope.title}</h1>
 <div>
-    <h1>${requestScope.title}</h1>
+    <c:if test="${fn:length(requestScope.list) == 0}">
+        <div>< 랭킹이 없습니다. ></div>
+    </c:if>
+
     <div>
         <table id="boardTable">
             <colgroup>
@@ -15,7 +20,7 @@
             <tr>
                 <th>no</th>
                 <th>title</th>
-                <th>hits</th>
+                <th>${param.type == 1 ? 'hits' : 'count'}</th>
                 <th>writer</th>
                 <th>reg-datetime</th>
             </tr>
@@ -33,7 +38,7 @@
                 <tr class="record" onclick="moveToDetail(${item.iboard});">
                     <td>${item.iboard}</td>
                     <td>${eachTitle}</td>
-                    <td>${item.hit}</td>
+                    <td>${item.cnt}</td>
                     <td>${eachWriterNm}</td>
                     <td>${item.rdt}</td>
                 </tr>
@@ -41,3 +46,4 @@
         </table>
     </div>
 </div>
+<script src="/res/js/board/list.js" ver="1"></script>

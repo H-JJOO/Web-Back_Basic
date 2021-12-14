@@ -37,6 +37,10 @@ table th {background: #ddd;}
 
 .body { padding: 20px;}
 
+.subContainer {height: 100%; display: grid; grid-template-columns: 120px 1fr; }
+.subContainer .subMenus {border-right: 1px solid #868484;}
+.subContainer .subBody {padding: 0 10px;}
+
 
 .wrap {height: 100%; display: flex; justify-content: center; align-items: center;}
 .wrap > div {padding: 50px; background: #ffb4b4; border: 5px solid #000000;}
