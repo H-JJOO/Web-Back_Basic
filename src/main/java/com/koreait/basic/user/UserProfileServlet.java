@@ -33,6 +33,7 @@ public class UserProfileServlet extends HttpServlet {
         String targetPath = application.getRealPath("/res/img/profile" + loginUserPk);
         File file = new File(targetPath);
         file.mkdir();
+
         System.out.println("targetPath : " + targetPath);
 
         MultipartRequest mr = new MultipartRequest(req, targetPath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
