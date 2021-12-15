@@ -44,12 +44,12 @@ public class BoardDetailServlet extends HttpServlet {
         //로그인이 안 되어 있으면  hit값을 올려
         int loginUserPk = Utils.getLoginUserPk(req);
         if (loginUserPk > 0) {//로그인이 되어 있어야 되고
-            BoardHeartEntity bhParam = new BoardHeartEntity();
-            bhParam.setIuser(loginUserPk);
-            bhParam.setIboard(iboard);
-            req.setAttribute("isHeart", BoardHeartDAO.selIsHeart(bhParam));
+            BoardHeartEntity bhEntity = new BoardHeartEntity();
+            bhEntity.setIuser(loginUserPk);
+            bhEntity.setIboard(iboard);
+            req.setAttribute("isHeart", BoardHeartDAO.selIsHeart(bhEntity));
         }
-
+        
         if (data.getWriter() != loginUserPk && nohits != 1) {//야매로 댓글달때 조회수 안오르게
             BoardDAO.updBoardHitUp(param);
         }

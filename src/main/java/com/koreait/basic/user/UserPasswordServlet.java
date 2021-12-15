@@ -14,7 +14,7 @@ public class UserPasswordServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String title = "비밀번호 변경";
-        req.setAttribute("subPage", "/user/password");
+        req.setAttribute("subPage", "/user/password");//열어야할 jsp 파일명
         Utils.displayView(title, "/user/myPage", req, res);
     }
 

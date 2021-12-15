@@ -120,7 +120,7 @@ public class BoardDAO {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = " SELECT A.iboard, A.title, A.writer, A.hit, A.rdt, B.nm AS writerNm " +
+        String sql = " SELECT A.iboard, A.title, A.writer, A.hit, A.rdt, B.nm AS writerNm, B.profileImg " +
                     " FROM t_board A " +
                     " INNER JOIN t_user B " +
                     " ON A.writer = B.iuser ";
@@ -151,7 +151,9 @@ public class BoardDAO {
                         .writer(writer)
                         .hit(hit)
                         .rdt(rdt)
-                        .writerNm(writerNm).build();
+                        .writerNm(writerNm)
+                        .profileImg(rs.getString("profileImg"))
+                        .build();
                 list.add(vo);
             }
         } catch (Exception e) {
