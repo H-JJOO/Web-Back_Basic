@@ -32,6 +32,11 @@ public class UserDAO {
         return 0;
     }
 
+//    public static UserEntity selUser(UserEntity entity) {
+//
+//    }
+
+
     //무조건 LoginResult 객체 주소값 리턴
     //result 값  0: 실패, 1: 로그인 성공, 2: 아이디 없음, 3: 비밀번호 틀림
     //result 가 1이었을 때만 loginUser 에 로그인 한 유저의 id, nm, gender 값을 저장한 객체를 담는다.
@@ -75,11 +80,12 @@ public class UserDAO {
         return new LoginResult(result, loginUser);//변수쓰임, 생성
     }
 
+
     public static UserEntity selUser(UserEntity entity) {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = " SELECT uid, nm, gender, rdt, profileImg FROM t_user " +
+        String sql = " SELECT uid, nm, upw, gender, rdt, profileImg FROM t_user " +
                     " WHERE iuser = ? ";
 
         try {
@@ -92,6 +98,7 @@ public class UserDAO {
                 UserEntity vo = new UserEntity();
                 vo.setUid(rs.getString("uid"));
                 vo.setNm(rs.getString("nm"));
+                vo.setUpw(rs.getString("upw"));
                 vo.setGender(rs.getInt("gender"));
                 vo.setRdt(rs.getString("rdt"));
                 vo.setProfileImg(rs.getString("profileImg"));
@@ -107,7 +114,7 @@ public class UserDAO {
         PreparedStatement ps = null;
         String sql = " UPDATE t_user SET ";
         String changeVal = null;
-        if (entity.getUpw() != null && !"".equals(entity.getUpw())) {
+        if (entity.getUpw() != null && !"".equals(entity.getUpw())) {//null 이아니고 빈칸이 아닐때
             sql += " upw = ? ";
             changeVal = entity.getUpw();
         } else if (entity.getProfileImg() != null && !"".equals(entity.getProfileImg())) {
@@ -128,5 +135,36 @@ public class UserDAO {
             DbUtils.close(con, ps);
         }
         return 0;
+    }
+
+    public static UserEntity selUser2(UserEntity entity) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "SELECT iuser, uid, upw, nm, gender, rdt, profileImg FROM t_user WHERE ";
+
+        if(entity.getIuser() > 0) {
+            sql += "iuser = " + entity.getIuser();
+        } else {
+            sql += "uid = '" + entity.getUid() + "'";
+        }
+        try {
+            con = DbUtils.getCon();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if(rs.next()) {
+                UserEntity vo = new UserEntity();
+                vo.setIuser(rs.getInt("iuser"));
+                vo.setUid(rs.getString("uid"));
+                vo.setUpw(rs.getString("upw"));
+                vo.setNm(rs.getString("nm"));
+                vo.setGender(rs.getInt("gender"));
+                vo.setRdt(rs.getString("rdt"));
+                vo.setProfileImg(rs.getString("profileImg"));
+                return vo;
+            }
+        } catch (Exception e) { e.printStackTrace();
+        } finally { DbUtils.close(con, ps, rs); }
+        return null;
     }
 }

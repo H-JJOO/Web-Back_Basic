@@ -14,6 +14,6 @@ public class UserLogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         HttpSession session = req.getSession();
         session.invalidate();
-        res.sendRedirect("/board/list");
+        res.sendRedirect("/user/login");
     }
 }
