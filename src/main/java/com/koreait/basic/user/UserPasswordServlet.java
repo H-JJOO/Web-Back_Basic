@@ -23,7 +23,6 @@ public class UserPasswordServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
         String upw = req.getParameter("upw");
         String changedUpw = req.getParameter("changedUpw");
         int loginUserPk = Utils.getLoginUserPk(req);
