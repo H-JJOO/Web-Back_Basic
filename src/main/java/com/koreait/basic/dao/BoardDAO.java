@@ -111,8 +111,6 @@ public class BoardDAO {
             DbUtils.close(con, ps, rs);
         }
         return 0;
-
-
     }
 
     public static List<BoardVO> selBoardList(BoardDTO param) {
@@ -203,7 +201,6 @@ public class BoardDAO {
         } finally {
             DbUtils.close(con, ps, rs);
         }
-
         return null;
     }
 

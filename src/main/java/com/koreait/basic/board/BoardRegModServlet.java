@@ -21,9 +21,7 @@ public class BoardRegModServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         int iboard = Utils.getParameterInt(req, "iboard");
-
         String title = "글등록";
-
         if (iboard > 0) {//수정
             title = "글수정";
             if (req.getAttribute("data") == null) {

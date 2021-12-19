@@ -81,7 +81,6 @@ public class BoardRankDAO {
                 " LIMIT 10 ";
 
         return procResultSet(sql);
-
     }
 
 

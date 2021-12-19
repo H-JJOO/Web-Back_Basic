@@ -51,6 +51,4 @@ public class Utils {
         UserEntity loginUser = getLoginUser(req);
         return  loginUser == null ? 0 : loginUser.getIuser();
     }
-
-
 }

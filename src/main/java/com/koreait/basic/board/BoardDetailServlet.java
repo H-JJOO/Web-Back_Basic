@@ -53,9 +53,6 @@ public class BoardDetailServlet extends HttpServlet {
         if (data.getWriter() != loginUserPk && nohits != 1) {//야매로 댓글달때 조회수 안오르게
             BoardDAO.updBoardHitUp(param);
         }
-
-
-
         Utils.displayView(data.getTitle(), "/board/detail", req, res);
     }
 }
