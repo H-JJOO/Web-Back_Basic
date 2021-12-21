@@ -22,7 +22,6 @@
 
         </div>
     </c:if>
-    <h1>디테일2</h1>
     <div>글번호 : ${requestScope.data.iboard}</div>
     <div>조회수 : ${requestScope.data.hit}</div>
     <div>작성자 : ${requestScope.data.writerNm}</div>
@@ -37,8 +36,9 @@
         <c:if test="${requestScope.nextIboard != 0 }">
             <a href="/board/detail?iboard=${requestScope.nextIboard}"><input type="button" value="다음글"></a>
         </c:if>
+        <div id="cmtListContainer" data-iboard="${requestScope.data.iboard}"
+             data-loginuserpk="${sessionScope.loginUser.iuser}"></div>
     </div>
-    <div id="cmtListContainer" data-iboard="${requestScope.data.iboard}"></div>
     <div>
         <c:if test="${sessionScope.loginUser != null}">
         <form action="/board/cmt/reg" method="post">
@@ -53,8 +53,7 @@
 </div>
 <div class="cmtModContainer">
     <div class="cmtModBody">
-        <form action="/board/cmt/mod" method="post" id="cmtModFrm">
-            <input type="hidden" name="iboard" value="${requestScope.data.iboard}">
+        <form id="cmtModFrm" onsubmit="return false;">
             <input type="hidden" name="icmt">
             <div><input type="text" name="ctnt" placeholder="댓글 내용"></div>
             <div>

@@ -23,20 +23,41 @@ public class BoardCmtServlet extends HttpServlet {
         BoardCmtDTO cmtParam = new BoardCmtDTO();
         cmtParam.setIboard(iboard);
 
-        System.out.println(iboard);
-        List<BoardCmtVO> list = BoardCmtDAO.selBoardCmtList(cmtParam);
+        List<BoardCmtVO> cmtlist = BoardCmtDAO.selBoardCmtList(cmtParam);
 
-        Gson gson = new Gson();
+        Gson gson = new Gson();// Object -> Json 으로 바꾸기 위해 Gson 객체 생성
+        String json = gson.toJson(cmtlist);
 
         res.setContentType("application/json;charset=UTF-8");
         res.setCharacterEncoding("UTF-8");
-        PrintWriter out = res.getWriter();
-        out.print(gson.toJson(list));
+        PrintWriter out = res.getWriter();//응답하는 역할
+        out.print(json);
         out.flush();
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         //등록(C), 수정(U), 삭제(D)
+        String proc = req.getParameter("proc");
+        System.out.println("proc : " + proc);
+
+        String json = Utils.getJson(req);
+        Gson gson = new Gson();
+        System.out.println("json : " + json);
+        BoardCmtEntity entity = gson.fromJson(json, BoardCmtEntity.class);
+        entity.setWriter(Utils.getLoginUserPk(req));
+
+        int result = 0;
+        switch (proc) {
+            case "upd" :
+                result = BoardCmtDAO.updBoardCmt(entity);//writer, icmt, ctnt
+                break;
+
+        }
+        res.setContentType("application/json");
+        PrintWriter out = res.getWriter();
+        out.print(String.format("{\"result\": %d}", result));
+
+
     }
 }
