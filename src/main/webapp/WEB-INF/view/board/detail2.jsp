@@ -42,12 +42,9 @@
     </div>
     <div>
         <c:if test="${sessionScope.loginUser != null}">
-        <form action="/board/cmt/reg" method="post">
-            <input type="hidden" name="iboard" value="${requestScope.data.iboard}">
-            <div>
-                <input type="text" name="ctnt" placeholder="댓글 내용">
-                <input type="submit" value="등록">
-            </div>
+        <form id="cmtNewFrm">
+            <input type="text" name="ctnt" placeholder="댓글 내용">
+            <input type="submit" value="등록">
         </form>
         </c:if>
     </div>
