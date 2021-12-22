@@ -1,5 +1,5 @@
 function moveToDetail(iboard) {
-    location.href="/board/detail?iboard=" + iboard;
+    location.href="/board/detail2?iboard=" + iboard;
 }
 
 var searchFrmElem = document.querySelector('#searchFrm');
