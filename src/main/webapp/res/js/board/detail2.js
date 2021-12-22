@@ -5,30 +5,30 @@ var cmtModContainerElem = document.querySelector('.cmtModContainer');
 var btnCancelElem = document.querySelector('#btnCancel');
 btnCancelElem.addEventListener('click', function () {
     cmtModContainerElem.style.display = 'none';
-    var selectedTrElem = document.querySelector('.cmt_selected');//클래스 찾아서
+    var selectedTrElem = cmtListContainerElem.querySelector('.cmt_selected');//클래스 찾아서
     selectedTrElem.classList.remove('cmt_selected');//지운다
 
 });
 
 var cmtModFrmElem = cmtModContainerElem.querySelector('#cmtModFrm');
-var submitBtnElem = cmtModFrmElem.querySelector('input[type=submit]');
+var submitBtnElem = cmtModFrmElem.querySelector('input[type=submit][value=수정]');
 submitBtnElem.addEventListener('click', function (e) {
-    e.preventDefault();
+    e.preventDefault();//submit 막기(하는일 못하게)
     var url = '/board/cmt?proc=upd';
 
     //댓글 수정 : ctnt, icmt
-    var param = {
+    var param = {//내용(객체)
         'icmt' : cmtModFrmElem.icmt.value,
         'ctnt' : cmtModFrmElem.ctnt.value
     };
 
-    fetch(url, {
+    fetch(url, {//POST 방식때는 객체필요, 객체안에는 ; 넣으면 안된다.
         'method' : 'POST',
         'headers' : {'Content-Type' : 'application/json'},//객체
-        'body' : JSON.stringify(param)
-    }).then(function (res) {
-        return res.json();
-    }).then(function (data) {
+        'body' : JSON.stringify(param)//JSON 형태로 변환(문자열)
+    }).then(function (res) {//res 로 통신에 대한 정보 들어감
+        return res.json();//공식문서에서 권장, 응답된 결과물이 담겨서 자바객체로 변환되어서 리턴
+    }).then(function (data) {//통신 결과물
         console.log(data.result);
         switch (data.result) {
             case 0://수정 실패
@@ -40,20 +40,18 @@ submitBtnElem.addEventListener('click', function (e) {
                 btnCancelElem.dispatchEvent(e);
                 break;
         }
-    }).catch(function (err) {
+    }).catch(function (err) {//에러대비
         console.log(err);
+        alert('댓글 수정 실패');
     });
 
 });
 
 function modCtnt(ctnt) {
-    var selectedTrElem = document.querySelector('.cmt_selected');
+    var selectedTrElem = cmtListContainerElem.querySelector('.cmt_selected');
     var tdCtntElem = selectedTrElem.children[0];
     tdCtntElem.innerText = ctnt;
 }
-
-
-
 
 if (cmtListContainerElem) {
     function openModForm(icmt, ctnt) {//구조분해 할당 사용
@@ -88,7 +86,7 @@ if (cmtListContainerElem) {
         cmtListContainerElem.appendChild(tableElem);
 
         var loginUserPk = cmtListContainerElem.dataset.loginuserpk === '' ? 0 : Number(cmtListContainerElem.dataset.loginuserpk);
-
+        //HTML 에서 값 가져온다 = 무조건 문자열
         console.log('loginUserPk : ' + loginUserPk);
 
         data.forEach(function (item) {

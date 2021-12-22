@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet("/board/cmt")
 public class BoardCmtServlet extends HttpServlet {
@@ -39,24 +41,31 @@ public class BoardCmtServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         //등록(C), 수정(U), 삭제(D)
         String proc = req.getParameter("proc");
-        System.out.println("proc : " + proc);
 
         String json = Utils.getJson(req);
         Gson gson = new Gson();
-        System.out.println("json : " + json);
-        BoardCmtEntity entity = gson.fromJson(json, BoardCmtEntity.class);
-        entity.setWriter(Utils.getLoginUserPk(req));
 
-        int result = 0;
+        BoardCmtEntity entity = gson.fromJson(json, BoardCmtEntity.class);
+        entity.setWriter(Utils.getLoginUserPk(req));//등록, 수정, 삭제때 다필요함
+
+        int result = 0;//결과값을 주기위한 셋팅
         switch (proc) {
             case "upd" :
                 result = BoardCmtDAO.updBoardCmt(entity);//writer, icmt, ctnt
                 break;
-
         }
+
         res.setContentType("application/json");
         PrintWriter out = res.getWriter();
-        out.print(String.format("{\"result\": %d}", result));
+
+        //Map
+        Map<String, Integer> map = new HashMap();//여러개를 저장할수 있는데 순서개념 없음, Key 값과 Value 값이이 중요
+        map.put("result", result);//키값, 벨류값
+
+        String resultJson = gson.toJson(map);
+        System.out.println("resultJson : " + resultJson);
+        out.println(resultJson);
+//        out.print(String.format("{\"result\": %d}", result));
 
 
     }

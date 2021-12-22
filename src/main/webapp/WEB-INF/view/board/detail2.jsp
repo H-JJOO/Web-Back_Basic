@@ -36,6 +36,7 @@
         <c:if test="${requestScope.nextIboard != 0 }">
             <a href="/board/detail?iboard=${requestScope.nextIboard}"><input type="button" value="다음글"></a>
         </c:if>
+
         <div id="cmtListContainer" data-iboard="${requestScope.data.iboard}"
              data-loginuserpk="${sessionScope.loginUser.iuser}"></div>
     </div>
@@ -53,7 +54,7 @@
 </div>
 <div class="cmtModContainer">
     <div class="cmtModBody">
-        <form id="cmtModFrm" onsubmit="return false;">
+        <form id="cmtModFrm">
             <input type="hidden" name="icmt">
             <div><input type="text" name="ctnt" placeholder="댓글 내용"></div>
             <div>

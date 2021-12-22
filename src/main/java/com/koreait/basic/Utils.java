@@ -5,11 +5,8 @@ import com.koreait.basic.user.model.UserEntity;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import javax.servlet.http.*;
+import java.io.*;
 
 public class Utils {
     public static void displayView(String title, String view, HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
