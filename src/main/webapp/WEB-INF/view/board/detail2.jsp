@@ -40,7 +40,7 @@
 
     <c:if test="${sessionScope.loginUser != null}">
         <div>
-            <form id="cmtNewFrm">
+            <form id="cmtNewF rm">
                 <input type="text" name="ctnt" placeholder="댓글 내용">
                 <input type="submit" value="댓글달기">
             </form>

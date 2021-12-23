@@ -99,7 +99,7 @@ function modCtnt(ctnt) {
 }
 //추가한 클래스에 display 를 flex로 추가
 if (cmtListContainerElem) {
-    function openModForm(icmt, ctnt) {//구조분해 할당 사용
+    function openModForm(icmt, ctnt) {//구조분해 할당 사용(했다가 안함)
         cmtModContainerElem.style.display = 'flex';
         cmtModFrmElem.icmt.value = icmt;
         cmtModFrmElem.ctnt.value = ctnt;
