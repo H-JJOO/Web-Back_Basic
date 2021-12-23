@@ -1,42 +1,46 @@
 var cmtNewFrmElem = document.querySelector('#cmtNewFrm');
-//댓글달기 버튼
-var newSubmitBtnElem = cmtNewFrmElem.querySelector('input[type=submit]');
-newSubmitBtnElem.addEventListener('click', function (e) {
-    e.preventDefault();
-    if (cmtNewFrmElem.ctnt.value.length === 0) {
-        alert('댓글 내용을 작성해 주세요.');
-        return;
-    }
-    var param = {
-        //iboard, ctnt
-        iboard : cmtListContainerElem.dataset.iboard,
-        ctnt : cmtNewFrmElem.ctnt.value
-    };
-    var url = '/board/cmt?proc=ins';
-    fetch(url, {
-        'method' : 'post',
-        'headers' : {'Content-Type' : 'application/json'},
-        'body' : JSON.stringify(param)
-    }).then(function (res) {
-        return res.json();
-    }).then(function (data) {
-        switch (data.result) {
-            case 0:
-                alert('댓글 달기를 할 수 없습니다.');
-                break;
-            case 1:
-                //방법3(기존 테이블 싹다지우고, 새로불러오기(새로추가된 댓글포함))
-                cmtNewFrmElem.ctnt.value = '';
-                cmtListContainerElem.innerHTML='';
-                getList();//댓글부분만 새로고침효과
-                break;
-        }
-    }).catch(function (err) {
-        console.log(err);
-        alert('댓글 달기에 실패하였습니다.')
-    });
-});
 
+if(cmtNewFrmElem) {
+// 댓글달기 버튼
+    var newSubmitBtnElem = cmtNewFrmElem.querySelector('input[type=submit]');
+    newSubmitBtnElem.addEventListener('click', function(e) {
+        e.preventDefault();//form 의 기능을 막고
+        //댓글 입력란이 공란이면 alert
+        if (cmtNewFrmElem.ctnt.value.length === 0) {
+            alert('댓글 내용을 작성해 주세요.');
+            return;
+        }
+        var param = {
+            //iboard, ctnt
+            iboard : cmtListContainerElem.dataset.iboard,
+            ctnt : cmtNewFrmElem.ctnt.value
+        };
+        var url = '/board/cmt?proc=ins';
+        fetch(url, {
+            'method' : 'post',
+            'headers' : {'Content-Type' : 'application/json'},
+            'body' : JSON.stringify(param)
+        }).then(function (res) {
+            return res.json();
+        }).then(function (data) {
+            switch (data.result) {
+                case 0:
+                    alert('댓글 달기를 할 수 없습니다.');
+                    break;
+                case 1:
+                    //방법3(기존 테이블 싹다지우고, 새로불러오기(새로추가된 댓글포함))
+                    cmtNewFrmElem.ctnt.value = '';
+                    cmtListContainerElem.innerHTML='';
+                    getList();//댓글부분만 새로고침효과
+                    break;
+            }
+        }).catch(function (err) {
+            console.log(err);
+            alert('댓글 달기에 실패하였습니다.')
+        });
+    });
+
+}
 
 var cmtListContainerElem = document.querySelector('#cmtListContainer');
 
@@ -46,11 +50,11 @@ var cmtModContainerElem = document.querySelector('.cmtModContainer');
 var btnCancelElem = document.querySelector('#btnCancel');
 btnCancelElem.addEventListener('click', function () {
     cmtModContainerElem.style.display = 'none';
-    var selectedTrElem = cmtListContainerElem.querySelector('.cmt_selected');//클래스 찾아서
+    var selectedTrElem = cmtListContainerElem.querySelector('.cmt_selected');//클래스 찾아서, 수정버튼을 누르면 tr에 class='cmt_selected' 가 추가되고, 추가된 클래스를 지움으로써 수정버튼을눌러서 none 에서 flex 로 된 display 를 flex 에서 none 으로 바꿔준다.
     selectedTrElem.classList.remove('cmt_selected');//지운다
-
 });
 
+//댓글 수정 버튼 클릭 이벤트 연결
 var cmtModFrmElem = cmtModContainerElem.querySelector('#cmtModFrm');
 var submitBtnElem = cmtModFrmElem.querySelector('input[type=submit][value=수정]');
 submitBtnElem.addEventListener('click', function (e) {
@@ -70,7 +74,6 @@ submitBtnElem.addEventListener('click', function (e) {
     }).then(function (res) {//res 로 통신에 대한 정보 들어감
         return res.json();//공식문서에서 권장, 응답된 결과물이 담겨서 자바객체로 변환되어서 리턴
     }).then(function (data) {//통신 결과물
-        console.log(data.result);
         switch (data.result) {
             case 0://수정 실패
                 alert('댓글 수정을 할 수 없습니다.')
@@ -88,12 +91,13 @@ submitBtnElem.addEventListener('click', function (e) {
 
 });
 
+//수정하는 tr에 class 추가
 function modCtnt(ctnt) {
     var selectedTrElem = cmtListContainerElem.querySelector('.cmt_selected');
     var tdCtntElem = selectedTrElem.children[0];
     tdCtntElem.innerText = ctnt;
 }
-
+//추가한 클래스에 display 를 flex로 추가
 if (cmtListContainerElem) {
     function openModForm(icmt, ctnt) {//구조분해 할당 사용
         cmtModContainerElem.style.display = 'flex';
@@ -104,7 +108,7 @@ if (cmtListContainerElem) {
     function getList() {
         var iboard = cmtListContainerElem.dataset.iboard;//속성값은 소문자
         var url = '/board/cmt?iboard=' + iboard;
-        console.log('url : ' + url);
+
         fetch(url).then(function (res) {
             return res.json();
         }).then(function (data) {
@@ -128,7 +132,6 @@ if (cmtListContainerElem) {
 
         var loginUserPk = cmtListContainerElem.dataset.loginuserpk === '' ? 0 : Number(cmtListContainerElem.dataset.loginuserpk);
         //HTML 에서 값 가져온다 = 무조건 문자열
-        console.log('loginUserPk : ' + loginUserPk);
 
         data.forEach(function (item) {
            var tr = document.createElement('tr');
@@ -184,12 +187,10 @@ if (cmtListContainerElem) {
                      });
                  }
                });
-
                lastTd.appendChild(btnMod);
                lastTd.appendChild(btnDel);
            }
         });
-
     }
     //FM? 정석? 여튼 김
     function displayCmt(data) {

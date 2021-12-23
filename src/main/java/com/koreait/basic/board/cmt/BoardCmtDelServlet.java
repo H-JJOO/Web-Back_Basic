@@ -21,7 +21,7 @@ public class BoardCmtDelServlet extends HttpServlet {
         param.setIcmt(icmt);
         param.setWriter(Utils.getLoginUserPk(req));
 
-        int result = BoardCmtDAO.delBoardCnt(param);
+        int result = BoardCmtDAO.delBoardCmt(param);
 
         switch (result) {
             case 1:

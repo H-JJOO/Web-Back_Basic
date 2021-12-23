@@ -99,7 +99,7 @@ public class BoardCmtDAO {
         return 0;
     }
 
-    public static int delBoardCnt(BoardCmtEntity entity) {
+    public static int delBoardCmt(BoardCmtEntity entity) {
         Connection con = null;
         PreparedStatement ps = null;
         String sql = "DELETE FROM t_board_cmt " +

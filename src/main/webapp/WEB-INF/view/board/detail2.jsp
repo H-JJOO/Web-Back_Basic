@@ -36,18 +36,18 @@
         <c:if test="${requestScope.nextIboard != 0 }">
             <a href="/board/detail?iboard=${requestScope.nextIboard}"><input type="button" value="다음글"></a>
         </c:if>
+    </div>
 
-        <div id="cmtListContainer" data-iboard="${requestScope.data.iboard}"
-             data-loginuserpk="${sessionScope.loginUser.iuser}"></div>
-    </div>
-    <div>
-        <c:if test="${sessionScope.loginUser != null}">
-        <form id="cmtNewFrm">
-            <input type="text" name="ctnt" placeholder="댓글 내용">
-            <input type="submit" value="등록">
-        </form>
-        </c:if>
-    </div>
+    <c:if test="${sessionScope.loginUser != null}">
+        <div>
+            <form id="cmtNewFrm">
+                <input type="text" name="ctnt" placeholder="댓글 내용">
+                <input type="submit" value="댓글달기">
+            </form>
+        </div>
+    </c:if>
+    <div id="cmtListContainer" data-iboard="${requestScope.data.iboard}"
+         data-loginuserpk="${sessionScope.loginUser.iuser}"></div>
 </div>
 <div class="cmtModContainer">
     <div class="cmtModBody">
@@ -62,4 +62,5 @@
     </div>
 
 </div>
-<script src="/res/js/board/detail2.js?ver=3"></script>
+
+<script src="/res/js/board/detail2.js?ver=1"></script>

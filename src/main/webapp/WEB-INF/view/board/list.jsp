@@ -81,4 +81,4 @@
         </c:otherwise>
     </c:choose>
 </div>
-<script src="/res/js/board/list.js" ver="3"></script>
+<script src="/res/js/board/list.js" ver="4"></script>

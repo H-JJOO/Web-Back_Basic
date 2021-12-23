@@ -2,7 +2,6 @@ package com.koreait.basic.board.cmt;
 
 import com.google.gson.Gson;
 import com.koreait.basic.Utils;
-import com.koreait.basic.board.model.BoardDTO;
 import com.koreait.basic.dao.BoardCmtDAO;
 
 import javax.servlet.ServletException;
@@ -31,10 +30,10 @@ public class BoardCmtServlet extends HttpServlet {
         String json = gson.toJson(cmtlist);
 
         res.setContentType("application/json;charset=UTF-8");
-        res.setCharacterEncoding("UTF-8");
+        res.setCharacterEncoding("UTF-8");//한글깨짐해결
         PrintWriter out = res.getWriter();//응답하는 역할
         out.print(json);
-        out.flush();
+        out.flush();//되어주기?(해주는게 FM)
     }
 
     @Override
@@ -54,7 +53,7 @@ public class BoardCmtServlet extends HttpServlet {
                 result = BoardCmtDAO.updBoardCmt(entity);//writer, icmt, ctnt
                 break;
             case "del" :
-                result = BoardCmtDAO.delBoardCnt(entity);//wirter, icmt
+                result = BoardCmtDAO.delBoardCmt(entity);//wirter, icmt
                 break;
             case "ins" :
                 result = BoardCmtDAO.insBoardCmt(entity);//writer, iboard, ctnt
