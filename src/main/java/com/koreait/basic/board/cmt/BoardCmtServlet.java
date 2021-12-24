@@ -19,59 +19,53 @@ import java.util.Map;
 public class BoardCmtServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        //리스트 (R)
+        //댓글리스트, iboard 값을 받아와서 댓글 리스트 뿌릴거임
         int iboard = Utils.getParameterInt(req, "iboard");
         BoardCmtDTO cmtParam = new BoardCmtDTO();
         cmtParam.setIboard(iboard);
 
-        List<BoardCmtVO> cmtlist = BoardCmtDAO.selBoardCmtList(cmtParam);
+        List<BoardCmtVO> cmtList = BoardCmtDAO.selBoardCmtList(cmtParam); //댓글 리스트를
 
-        Gson gson = new Gson();// Object -> Json 으로 바꾸기 위해 Gson 객체 생성
-        String json = gson.toJson(cmtlist);
+        Gson gson = new Gson();//json 구조의 데이터를 JAVA 객체로 바꿔주는 JAVA 라이브러리 (json <-> java 를 돕는 라이브러리)
+        String json = gson.toJson(cmtList);//cmtList 를 Json 으로 바꿔줌
 
-        res.setContentType("application/json;charset=UTF-8");
-        res.setCharacterEncoding("UTF-8");//한글깨짐해결
-        PrintWriter out = res.getWriter();//응답하는 역할
+        res.setContentType("application/json;charset=UTF-8");//MIME 타입인 "text/html" 의 변경, 캐릭터 인코딩 재 지정
+        res.setCharacterEncoding("UTF-8");//post 방식으로 날릴때 한글 안깨지게
+        PrintWriter out = res.getWriter();//json 형태 텍스트를 출력해주기위한 출력 메서드
         out.print(json);
-        out.flush();//되어주기?(해주는게 FM)
+        out.flush();
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        //등록(C), 수정(U), 삭제(D)
+        //CUD
         String proc = req.getParameter("proc");
 
         String json = Utils.getJson(req);
         Gson gson = new Gson();
 
         BoardCmtEntity entity = gson.fromJson(json, BoardCmtEntity.class);
-        entity.setWriter(Utils.getLoginUserPk(req));//등록, 수정, 삭제때 다필요함
+        entity.setWriter(Utils.getLoginUserPk(req));//writer 값 cud 다필요함
 
-        int result = 0;//결과값을 주기위한 셋팅
+        int result = 0;
         switch (proc) {
             case "upd" :
-                result = BoardCmtDAO.updBoardCmt(entity);//writer, icmt, ctnt
+                result = BoardCmtDAO.updBoardCmt(entity);
                 break;
             case "del" :
-                result = BoardCmtDAO.delBoardCmt(entity);//wirter, icmt
+                result = BoardCmtDAO.delBoardCmt(entity);
                 break;
             case "ins" :
-                result = BoardCmtDAO.insBoardCmt(entity);//writer, iboard, ctnt
+                result = BoardCmtDAO.insBoardCmt(entity);
                 break;
         }
-
         res.setContentType("application/json");
         PrintWriter out = res.getWriter();
 
-        //Map
-        Map<String, Integer> map = new HashMap();//여러개를 저장할수 있는데 순서개념 없음, Key 값과 Value 값이이 중요
-        map.put("result", result);//키값, 벨류값
+        Map<String, Integer> map = new HashMap();
+        map.put("result", result);
 
         String resultJson = gson.toJson(map);
-        System.out.println("resultJson : " + resultJson);
         out.println(resultJson);
-//        out.print(String.format("{\"result\": %d}", result));
-
-
     }
 }

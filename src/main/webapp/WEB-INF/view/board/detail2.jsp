@@ -22,6 +22,7 @@
 
         </div>
     </c:if>
+
     <div>글번호 : ${requestScope.data.iboard}</div>
     <div>조회수 : ${requestScope.data.hit}</div>
     <div>작성자 : ${requestScope.data.writerNm}</div>
@@ -40,14 +41,18 @@
 
     <c:if test="${sessionScope.loginUser != null}">
         <div>
-            <form id="cmtNewF rm">
-                <input type="text" name="ctnt" placeholder="댓글 내용">
-                <input type="submit" value="댓글달기">
+            <form id="cmtNewFrm">
+                <div>
+                    <input type="text" name="ctnt" placeholder="댓글 내용">
+                    <input type="submit" value="등록">
+                </div>
             </form>
         </div>
     </c:if>
+
     <div id="cmtListContainer" data-iboard="${requestScope.data.iboard}"
          data-loginuserpk="${sessionScope.loginUser.iuser}"></div>
+
 </div>
 <div class="cmtModContainer">
     <div class="cmtModBody">
@@ -62,5 +67,4 @@
     </div>
 
 </div>
-
-<script src="/res/js/board/detail2.js?ver=1"></script>
+<script src="/res/js/board/detail2.js" ver="2"></script>
