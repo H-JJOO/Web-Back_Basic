@@ -15,8 +15,6 @@ ul {list-style: none;}
 
 .container { display: grid; grid-template-rows: 80px 1fr 50px; min-height: 100vh; }
 
-
-
 table {
     border-top: 1px solid #222;
     border-left: 0;
@@ -30,8 +28,6 @@ table th {background: #ddd;}
 .circular--size200 {width: 200px; height: 200px;}
 .circular--size300 {width: 300px; height: 300px;}
 
-
-
 .header { background-color: #ffb4b4; padding: 10px 30px;}
 .topMenu { display: flex; }
 .topMenu li a {color: #fff;}
@@ -39,9 +35,7 @@ table th {background: #ddd;}
 .topMenu li:not(:first-child) { margin-left: 10px;}
 .topMenu li {color: #fff;}
 .topMenu li.logout{flex-grow:1; text-align: right; color: #ffffff;}
-.topMenu li.welcome { flex-grow: 99;text-align: right;
-
-}
+.topMenu li.welcome { flex-grow: 99;text-align: right;}
 
 .body { padding: 20px;}
 
@@ -49,7 +43,6 @@ table th {background: #ddd;}
 .subContainer .subMenus {border-right: 1px solid #000; }
 .subContainer .subMenus li:not(:first-child) { margin-top: 10px; }
 .subContainer .subBody {padding: 0 10px;}
-
 
 .wrap {height: 100%; display: flex; justify-content: center; align-items: center;}
 .wrap > div {padding: 50px; background: #ffb4b4; border: 5px solid #000000;}
@@ -63,6 +56,5 @@ table th {background: #ddd;}
 
 .fav {color: #ffacbe; font-size: 20px;}
 .fav i:hover {cursor: pointer; }
-
 
 .footer { background-color: #4b4b4b; color: #fff; display: flex; justify-content: center; align-items: center; border-top: 5px solid #000;}

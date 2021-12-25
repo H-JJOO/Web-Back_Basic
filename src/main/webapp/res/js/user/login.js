@@ -28,8 +28,6 @@ if (frm) {
             alert('비밀번호를 확인해 주세요.');
             e.preventDefault();
             return;
-
-
         }
     }
     frm.addEventListener('submit', frmSubmitEvent);

@@ -35,8 +35,5 @@ public class BoardCmtModServlet extends HttpServlet {
                 res.sendRedirect("/board/detail?nohits=1&iboard=" + iboard);
                 break;
         }
-
-
-
     }
 }

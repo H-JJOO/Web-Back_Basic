@@ -19,7 +19,6 @@
                     <a href="/board/heart?proc=1&iboard=${requestScope.data.iboard}"><i class="far fa-thumbs-up"></i></a>
                 </c:otherwise>
             </c:choose>
-
         </div>
     </c:if>
 

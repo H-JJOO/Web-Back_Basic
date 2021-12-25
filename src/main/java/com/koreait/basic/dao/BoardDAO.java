@@ -254,8 +254,6 @@ public class BoardDAO {
         return 0;
     }
 
-
-
     public static int updBoard(BoardEntity entity) {
         Connection con = null;
         PreparedStatement ps = null;

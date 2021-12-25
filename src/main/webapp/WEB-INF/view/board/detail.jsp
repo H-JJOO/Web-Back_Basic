@@ -52,7 +52,6 @@
                     <td><c:out value="${item.ctnt}"/></td>
                     <td>${item.writerNm}</td>
                     <td>${item.rdt}</td>
-
                     <td>
                         <c:if test="${sessionScope.loginUser.iuser == item.writer}">
                             <button onclick="openModForm(${item.icmt},'${item.ctnt}');">수정</button>
@@ -87,6 +86,5 @@
             </div>
        </form>
     </div>
-
 </div>
 <script src="/res/js/board/detail.js" ver="2"></script>

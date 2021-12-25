@@ -34,7 +34,6 @@
                     <c:if test="${param.searchText != null && (param.searchType == 4 || param.searchType == 5)}">
                         <c:set var="eachWriterNm" value="${fn:replace(eachWriterNm, param.searchText, '<mark>' += param.searchText += '</mark>')}" />
                     </c:if>
-
                     <tr class="record" onclick="moveToDetail(${item.iboard});">
                         <td>${item.iboard}</td>
                         <td>${eachTitle}</td>

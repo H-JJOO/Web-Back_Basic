@@ -31,6 +31,5 @@ public class BoardRankServlet extends HttpServlet {
                 break;
         }
         Utils.displayView(title, "/board/rank", req, res);
-
     }
 }

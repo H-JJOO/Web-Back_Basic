@@ -14,6 +14,5 @@
             </div>
         </form>
     </div>
-
 </div>
 <script src="/res/js/user/login.js" ver="3"></script>

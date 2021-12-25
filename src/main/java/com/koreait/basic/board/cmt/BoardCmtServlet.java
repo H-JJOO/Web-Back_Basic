@@ -50,13 +50,16 @@ public class BoardCmtServlet extends HttpServlet {
         int result = 0;
         switch (proc) {
             case "upd" :
-                result = BoardCmtDAO.updBoardCmt(entity);
+                result = BoardCmtDAO.updBoardCmt(entity);//writer, icmt, ctnt
+                //댓글수정할때는 작성자와 댓글번호, 댓글내용이 있어야 수정가능
                 break;
             case "del" :
-                result = BoardCmtDAO.delBoardCmt(entity);
+                result = BoardCmtDAO.delBoardCmt(entity);//writer, icmt
+                //댓글삭제할때는 작성자와 댓글번호가 있어야 삭제가능
                 break;
             case "ins" :
-                result = BoardCmtDAO.insBoardCmt(entity);
+                result = BoardCmtDAO.insBoardCmt(entity);//writer, iboard, ctnt
+                //댓글등록할때는 작성자와 게시글번호, 댓글내용이 있어야 등록가능
                 break;
         }
         res.setContentType("application/json");

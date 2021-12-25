@@ -7,5 +7,4 @@ if (searchFrmElem) {
     searchFrmElem.rowCnt.addEventListener('change', function () {
        searchFrmElem.submit();
     });
-
 }

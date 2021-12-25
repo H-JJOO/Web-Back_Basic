@@ -33,8 +33,5 @@ public class BoardCmtRegServlet extends HttpServlet {
                 res.sendRedirect("/board/detail?nohits=1&iboard=" + iboard);
                 break;
         }
-
-
-
     }
 }
