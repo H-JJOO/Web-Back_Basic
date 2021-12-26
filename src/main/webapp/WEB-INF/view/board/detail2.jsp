@@ -3,10 +3,10 @@
 <link rel="stylesheet" href="/res/css/board/detail.css" ver="1">
 <div>
     <c:if test="${sessionScope.loginUser.iuser == requestScope.data.writer}">
-    <div>
-        <a href="/board/del?iboard=${requestScope.data.iboard}"><button>삭제</button></a>
-        <a href="/board/regmod?iboard=${requestScope.data.iboard}"><button>수정</button></a>
-    </div>
+        <div>
+            <a href="/board/del?iboard=${requestScope.data.iboard}"><button>삭제</button></a>
+            <a href="/board/regmod?iboard=${requestScope.data.iboard}"><button>수정</button></a>
+        </div>
     </c:if>
 
     <c:if test="${sessionScope.loginUser != null}">
@@ -19,6 +19,7 @@
                     <a href="/board/heart?proc=1&iboard=${requestScope.data.iboard}"><i class="far fa-thumbs-up"></i></a>
                 </c:otherwise>
             </c:choose>
+
         </div>
     </c:if>
 
@@ -62,7 +63,7 @@
                 <input type="submit" value="수정">
                 <input type="button" value="취소" id="btnCancel">
             </div>
-       </form>
+        </form>
     </div>
 
 </div>
